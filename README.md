@@ -1,4 +1,4 @@
-# HumioLogger
+# Flogger
 
 **Requirements**: iOS 14.0+ &bull; Swift 5.7+ / Xcode 14+
 
