@@ -3,25 +3,25 @@
 import PackageDescription
 
 let package = Package(
-    name: "HumioLogger",
+    name: "Flogger",
     platforms: [
         .iOS(.v14)
     ],
     products: [
         .library(
-            name: "HumioLogger",
-            targets: ["HumioLogger"]
+            name: "Flogger",
+            targets: ["Flogger"]
         )
     ],
     dependencies: [],
     targets: [
         .target(
-            name: "HumioLogger",
+            name: "Flogger",
             dependencies: []
         ),
         .testTarget(
-            name: "HumioLoggerTests",
-            dependencies: ["HumioLogger"]
+            name: "FloggerTests",
+            dependencies: ["Flogger"]
         )
     ]
 )

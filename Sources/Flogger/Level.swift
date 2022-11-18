@@ -1,12 +1,12 @@
 import Foundation
 
-extension Humio {
+extension Flogger {
     public enum Level: Int {
         case debug = 0, info, warn, error
     }
 }
 
-extension Humio.Level: CustomStringConvertible {
+extension Flogger.Level: CustomStringConvertible {
     public var description: String {
         switch self {
         case .debug: return "debug"

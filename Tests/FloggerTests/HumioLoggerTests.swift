@@ -1,9 +1,9 @@
 import XCTest
-@testable import HumioLogger
+@testable import Flogger
 
 final class HumioLoggerTests: XCTestCase {
-    func make(level: Humio.Level = .debug, enabled: Bool = true, allowsCellularAccess: Bool = true, frequencyTrigger: TimeInterval = 10, amountTrigger: Int = 10, tags: [String : String] = [:]) -> Humio {
-        Humio(configuration: Configuration(level: level, enabled: enabled, printMessages: false, allowsCellularAccess: allowsCellularAccess, frequencyTrigger: frequencyTrigger, amountTrigger: amountTrigger, tags: tags), token: "", space: "-")
+    func make(level: Flogger.Level = .debug, enabled: Bool = true, allowsCellularAccess: Bool = true, frequencyTrigger: TimeInterval = 10, amountTrigger: Int = 10, tags: [String : String] = [:]) -> HumioLogger {
+        return HumioLogger(token: "", space: "", tags: tags, allowsCellularAccess: allowsCellularAccess, frequencyTrigger: frequencyTrigger, amountTrigger: amountTrigger)
     }
 
     func testInstancesSetupAValidTimer() async throws {
@@ -65,44 +65,5 @@ final class HumioLoggerTests: XCTestCase {
         humio.error("hi!")
         humio.syncCache()
         XCTAssertEqual(humio.cache.count, 4)
-    }
-
-    func testIgnoredLevelAreNotPutIntoQueue() {
-        let humio = make(level: .info)
-        humio.debug("hi!")
-        humio.debug("hi!")
-        humio.info("hi!")
-        humio.info("hi!")
-        humio.syncCache()
-        XCTAssertEqual(humio.cache.count, 2)
-    }
-
-    func testIgnoringLevelsDebugAndInfo() {
-        let humio = make(level: .warn)
-        humio.debug("hi!")
-        humio.info("hi!")
-        humio.warn("hi!")
-        humio.warn("hi!")
-        humio.error("hi!")
-        humio.error("hi!")
-        humio.syncCache()
-        XCTAssertEqual(humio.cache.count, 4)
-    }
-
-    func testIgnoredLevelAreNotPutIntoQueueAndThatErrorCannotBeIgnored() {
-        let humio = make(level: .error)
-        humio.debug("hi!")
-        humio.info("hi!")
-        humio.warn("hi!")
-        humio.error("hi!")
-        humio.error("hi!")
-        humio.syncCache()
-        XCTAssertEqual(humio.cache.count, 2)
-    }
-}
-
-extension Humio {
-    func syncCache() {
-        cacheQueue.sync { {}() } // awaits a sync operation enqueued on the cache worker to wait any outstanding operation
     }
 }

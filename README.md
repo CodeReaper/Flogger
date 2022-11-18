@@ -14,14 +14,16 @@
 
 ### Call setup once and use logging methods
 ```swift
-import HumioLogger
+import Flogger
 
-// Call setup
-Humio.setup(level: .info)
+// Setup loggers
+var flogger = Flogger(level: .info)
+flogger.add(HumioLogger())
+flogger.add(ConsoleLogger())
 
 // Log statements
-Humio.debug("This is a debug statement that is not delivered to Humio")
-Humio.info("This is a info statement that will be sent to Humio")
+Flog.debug("This is a debug statement that is not delivered to Humio")
+Flog.info("This is a info statement that will be sent to Humio")
 ```
 
 ## Swift Package Manager
