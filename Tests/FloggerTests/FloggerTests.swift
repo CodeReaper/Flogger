@@ -4,8 +4,7 @@ import XCTest
 final class FloggerTests: XCTestCase {
     func testIgnoredLevelAreNotPutIntoQueue() {
         let logger = CountLogger()
-        var flogger = Flogger(level: .info)
-        flogger.add(logger)
+        let flogger = Flogger(level: .info, [logger])
         flogger.debug("hi!")
         flogger.debug("hi!")
         flogger.info("hi!")
@@ -15,8 +14,7 @@ final class FloggerTests: XCTestCase {
 
     func testIgnoringLevelsDebugAndInfo() {
         let logger = CountLogger()
-        var flogger = Flogger(level: .warn)
-        flogger.add(logger)
+        let flogger = Flogger(level: .warn, [logger])
         flogger.debug("hi!")
         flogger.info("hi!")
         flogger.warn("hi!")
@@ -28,8 +26,7 @@ final class FloggerTests: XCTestCase {
 
     func testIgnoredLevelAreNotPutIntoQueueAndThatErrorCannotBeIgnored() {
         let logger = CountLogger()
-        var flogger = Flogger(level: .error)
-        flogger.add(logger)
+        let flogger = Flogger(level: .error, [logger])
         flogger.debug("hi!")
         flogger.info("hi!")
         flogger.warn("hi!")

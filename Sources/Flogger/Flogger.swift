@@ -1,17 +1,15 @@
 import Foundation
 
-public class Flogger {
+public struct Flogger {
     private let level: Level
 
-    private var loggers: [Logger] = []
+    private let loggers: [Logger]
 
-    public init(level: Level = .info) {
+    @discardableResult
+    public init(level: Level = .info, _ loggers: [Logger]) {
         self.level = level
+        self.loggers = loggers
         Flog.instance = self
-    }
-
-    public func add(_ logger: Logger) {
-        loggers.append(logger)
     }
 
     func log(severity: Level, _ message: String, _ file: String, _ line: Int) {

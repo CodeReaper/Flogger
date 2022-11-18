@@ -96,7 +96,7 @@ public class HumioLogger {
             "attributes": [
                 "filename": URL(fileURLWithPath: file).lastPathComponent,
                 "line": line,
-                "level": severity
+                "level": severity.description
             ],
             "rawstring": message
         ]
