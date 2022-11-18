@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Flogger {
+public class Flogger {
     private let level: Level
 
     private var loggers: [Logger] = []
@@ -10,7 +10,7 @@ public struct Flogger {
         Flog.instance = self
     }
 
-    public mutating func add(_ logger: Logger) {
+    public func add(_ logger: Logger) {
         loggers.append(logger)
     }
 
