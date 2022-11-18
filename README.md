@@ -28,4 +28,4 @@ Flog.info("This is a info statement that will be sent to Humio")
 
 ## Swift Package Manager
 
-The [Swift Package Manager](https://swift.org/package-manager/) automates the distribution of Swift code. To use GRDB with SPM, add a dependency to `https://github.com/CodeReaper/HumioLogger.git`
+The [Swift Package Manager](https://swift.org/package-manager/) automates the distribution of Swift code. To use GRDB with SPM, add a dependency to `https://github.com/CodeReaper/Flogger.git`
