@@ -4,7 +4,7 @@
 
 ## Installation
 
-The [Swift Package Manager](https://swift.org/package-manager/) automates the distribution of Swift code. To use GRDB with SPM, add a dependency to `https://github.com/CodeReaper/Flogger.git`
+The [Swift Package Manager](https://swift.org/package-manager/) automates the distribution of Swift code. To use Flogger with SPM, add a dependency to `https://github.com/CodeReaper/Flogger.git`
 
 ## Quick Start
 

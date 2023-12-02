@@ -15,7 +15,7 @@ public struct Flogger {
     func log(severity: Level, _ message: String, _ file: String, _ line: Int) {
         guard level.rawValue <= severity.rawValue else { return }
 
-        switch level {
+        switch severity {
         case .debug:
             loggers.forEach { $0.debug(message, file, line) }
         case .info:
