@@ -48,6 +48,7 @@ public class HumioLogger {
         self.tags = updatedTags
 
         self.storage = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        try! FileManager.default.createDirectory(at: self.storage, withIntermediateDirectories: true)
 
         self.delegate = Delegate(logger: logger, storage: storage)
 
