@@ -5,7 +5,6 @@ import os
 public class HumioLogger {
     let endpoint: URL
     let token: String
-    let allowsCellularAccess: Bool
     let frequencyTrigger: TimeInterval
     let amountTrigger: Int
     let tags: [String: String]
@@ -37,7 +36,6 @@ public class HumioLogger {
         self.token = token
         self.endpoint = endpoint
 
-        self.allowsCellularAccess = allowsCellularAccess
         self.frequencyTrigger = max(5, frequencyTrigger)
         self.amountTrigger = min(100, max(10, amountTrigger))
 
@@ -53,7 +51,7 @@ public class HumioLogger {
         self.delegate = Delegate(logger: logger, storage: storage)
 
         let sessionConfiguration = URLSessionConfiguration.ephemeral
-        sessionConfiguration.allowsCellularAccess = sessionConfiguration.allowsCellularAccess
+        sessionConfiguration.allowsCellularAccess = allowsCellularAccess
         self.session = URLSession(configuration: sessionConfiguration, delegate: delegate, delegateQueue: .main)
 
         observer = NotificationCenter.default.addObserver(forName: UIApplication.willResignActiveNotification, object: nil, queue: .main) { [flush] _ in
